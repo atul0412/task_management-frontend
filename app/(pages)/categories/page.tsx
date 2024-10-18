@@ -1,5 +1,6 @@
 "use client";
 import Spinner from '@/app/components/Spinner';
+import axiosInstance from '@/app/Services/axiosInterceptor';
 import { getSecureJsonValueFromLocalStorage, getUid } from '@/app/Services/core.services';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
@@ -25,7 +26,7 @@ const Categories = () => {
     const fetchCategories = async () => {
         setLoading(true);
         try {
-            const response = await axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/categories/user/${user.id}`);
+            const response = await axiosInstance.get(`/categories/user/${user.id}`);
             setCategories(response.data.success.body.data);
             setLoading(false);
         } catch (error) {
@@ -44,7 +45,7 @@ const Categories = () => {
 
     const handleDelete = async (id: string) => {
         try {
-            await axios.delete(`${process.env.NEXT_PUBLIC_API_BASE_URL}/categories/${id}`);
+            await axiosInstance.delete(`/categories/${id}`);
             fetchCategories(); // Refresh categories after deletion
         } catch (error) {
             console.log(error);
@@ -61,13 +62,13 @@ const Categories = () => {
         try {
             if (isEditing) {
                 // Update existing category
-                await axios.put(`${process.env.NEXT_PUBLIC_API_BASE_URL}/categories/${category.id}`, {
+                await axiosInstance.put(`/categories/${category.id}`, {
                     name: category.name,
                     userId: category.userId ?? user.id,
                 });
             } else {
                 // Add new category
-                await axios.post(`${process.env.NEXT_PUBLIC_API_BASE_URL}/categories`, {
+                await axiosInstance.post(`/categories`, {
                     id: getUid(),
                     name: category.name,
                     userId: user.id,

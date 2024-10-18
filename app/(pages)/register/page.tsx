@@ -3,15 +3,12 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
-import { SetUICookie } from "@/app/utils/utils";
-import { getUid, setSecureJsonValueInLocalStorage } from "@/app/Services/core.services";
+import { getUid,  } from "@/app/Services/core.services";
 import Link from "next/link";
 import Spinner from "@/app/components/Spinner";
 
 const LoginForm = () => {
     const [loading, setLoading] = useState(false);
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
     const [error, setError] = useState("");
     const [showPassword, setShowPassword] = useState(false);
     const [user, setUser] = useState({

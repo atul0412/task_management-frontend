@@ -2,6 +2,8 @@
 import { useState } from "react";
 import Link from "next/link";
 import { FaThLarge, FaBell, FaCog, FaUser } from 'react-icons/fa';
+import { clearSecureLocalStorage } from "@/app/Services/core.services";
+import { DeleteAllCookies } from "@/app/utils/utils";
 
 export default function Header() {
   
@@ -14,8 +16,8 @@ export default function Header() {
 
   
   const handleLogout = () => {
-    localStorage.removeItem('user');
-    localStorage.removeItem('token');
+    clearSecureLocalStorage();
+    DeleteAllCookies();
     window.location.href = '/';
   }
 
@@ -35,7 +37,7 @@ export default function Header() {
         <div className="absolute right-0 mr-4 w-48 bg-white shadow-lg rounded-lg">
           <ul className="py-2">
             <li className="px-4 py-2 hover:bg-gray-100">
-              <Link href="/profile">User Profile</Link>
+              <Link href="/user-profile">User Profile</Link>
             </li>
             <li className="px-4 py-2 hover:bg-gray-100">
               <button onClick={handleLogout}>

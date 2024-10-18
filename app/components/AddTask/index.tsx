@@ -5,7 +5,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { getSecureJsonValueFromLocalStorage, getUid } from '@/app/Services/core.services';
 import axios from 'axios';
-import Categories from '@/app/(pages)/categories/page';
+import axiosInstance from '@/app/Services/axiosInterceptor';
 
 const AddTask = ({ onClose, onSubmit, isLoading, successMessage, editTask }: any) => {
     const [loading, setLoading] = useState(false);
@@ -29,7 +29,7 @@ const AddTask = ({ onClose, onSubmit, isLoading, successMessage, editTask }: any
 
     const fetchCategories = async() => {
         try {
-            const response = await axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/categories/user/${user.id}`);
+            const response = await axiosInstance.get(`/categories/user/${user.id}`);
             setCategories(response.data.success.body.data);
         } catch (error) {
             console.error(error);

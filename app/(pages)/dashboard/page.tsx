@@ -7,6 +7,7 @@ import Spinner from '@/app/components/Spinner';
 import axios from 'axios';
 import { getSecureJsonValueFromLocalStorage } from '@/app/Services/core.services';
 import { set } from 'react-datepicker/dist/date_utils';
+import axiosInstance from '@/app/Services/axiosInterceptor';
 
 const Dashboard = () => {
   const [tasks, setTasks] = useState<any[]>([]);
@@ -30,7 +31,7 @@ const Dashboard = () => {
   const fetchTasks = async () => {
     setLoading(true)
     try {
-      const response = await axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/tasks/user/${user.id}`) // Fetch tasks from service
+      const response = await axiosInstance.get(`/tasks/user/${user.id}`) // Fetch tasks from service
       const taskData  = response.data.success.body.data
       setTasks(taskData)
       // Filter tasks by status
@@ -53,7 +54,7 @@ const Dashboard = () => {
   const fetchCategories = async() =>{
     setLoading(true);
     try {
-      const response = await axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/categories/user/${user.id}`) // Fetch categories from service
+      const response = await axiosInstance.get(`/categories/user/${user.id}`) // Fetch categories from service
       const categoryData  = response.data.success.body.data
       // You can now set these categories to state or handle them accordingly
       setCategories(categoryData);
