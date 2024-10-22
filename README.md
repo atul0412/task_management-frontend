@@ -4,6 +4,9 @@ steps :
 1- first clone the repository
 2- run the command npm install
 3- run the command npm run dev 
+4- after run the server first signup the user 
+5- login with the same credentials 
+6- manage tasks
 
 ## Getting Started
 
