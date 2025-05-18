@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
-import { getUid,  } from "@/app/Services/core.services";
+import { getUid } from "@/app/Services/core.services";
 import Link from "next/link";
 import Spinner from "@/app/components/Spinner";
 
@@ -52,19 +52,19 @@ const LoginForm = () => {
     }
 
     return (
-        <div className="min-h-screen flex items-center justify-center bg-gray-100">
-            <div className="bg-white p-8 rounded shadow-md w-96">
+        <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
+            <div className="bg-white p-6 sm:p-8 rounded shadow-md w-full max-w-md">
                 <h2 className="text-2xl font-bold mb-6 text-center">Sign up</h2>
                 {error && <p className="text-red-500 mb-4">{error}</p>}
                 <form onSubmit={handleRegister}>
-                <div className="mb-4">
+                    <div className="mb-4">
                         <label className="block text-gray-700 text-sm font-bold mb-2">
                             First Name
                         </label>
                         <input
                             type="text"
                             value={user.first_name}
-                            name = "first_name"
+                            name="first_name"
                             onChange={handleInputChange}
                             required
                             className="w-full px-3 py-2 border rounded"
@@ -77,13 +77,12 @@ const LoginForm = () => {
                         <input
                             type="text"
                             value={user.last_name}
-                            name = "last_name"
+                            name="last_name"
                             onChange={handleInputChange}
                             required
                             className="w-full px-3 py-2 border rounded"
                         />
                     </div>
-
                     <div className="mb-4">
                         <label className="block text-gray-700 text-sm font-bold mb-2">
                             Email
@@ -166,7 +165,7 @@ const LoginForm = () => {
                         <input
                             type="text"
                             value={user.phone_number}
-                            name = "phone_number"
+                            name="phone_number"
                             onChange={handleInputChange}
                             required
                             className="w-full px-3 py-2 border rounded"
